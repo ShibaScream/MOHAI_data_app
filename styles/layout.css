@@ -13,8 +13,8 @@
   margin: 0 auto;
 }
 
-#visual_page ul {
-  list-style-type: none;
+#visual_page p {
+  text-align: left;
 }
 
 #data h1 {

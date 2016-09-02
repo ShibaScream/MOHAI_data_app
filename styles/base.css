@@ -26,11 +26,16 @@
 html {
   background-color: #f3d83a;
 }
+
 body {
  display: block;
  margin: auto;
  padding-top: 5%;
  padding: 10%;
+}
+
+ul {
+  list-style: none;
 }
 
 img {
@@ -40,13 +45,14 @@ img {
 }
 
 table {
-  border: 2px solid black;
+  border: 10px solid #063B5B;
   border-collapse: collapse;
   margin: 0 auto;
+  background-color: white;
 }
 
 td {
-  border:1px solid black;
+  border: 5px solid #063B5B;
   padding: 15vw;
 }
 
