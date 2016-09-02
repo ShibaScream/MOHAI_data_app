@@ -22,3 +22,34 @@
     font-weight: 700;
     font-style: normal;
 }
+
+html {
+  background-color: #f3d83a;
+}
+body {
+ display: block;
+ margin: auto;
+ padding-top: 5%;
+ padding: 10%;
+}
+
+img {
+  display: block;
+  margin: auto;
+  width: 80%;
+}
+
+footer {
+  display:block;
+  margin: auto;
+  padding: 1%;
+  width: 80%;
+  position: absolute;
+  text-align: center;
+  background-color: #063B5B;
+  color: #fefefe;
+}
+
+nav {
+  float: right;
+}
