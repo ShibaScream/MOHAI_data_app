@@ -1,0 +1,24 @@
+{
+  "name": "mohai_data_app",
+  "version": "1.0.0",
+  "description": "This app preserves the voices, thoughts and ideas of MOHAI's visitors while simultaneously opening up that data to the community as a whole so it can be talked about and analyzed.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShibaScream/MOHAI_data_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShibaScream/MOHAI_data_app/issues"
+  },
+  "homepage": "https://github.com/ShibaScream/MOHAI_data_app#readme"
+}
