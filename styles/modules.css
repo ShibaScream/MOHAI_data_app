@@ -8,4 +8,12 @@
     display: block;
   }
 
+  nav li {
+    display: inline-block;
+    padding-left:20px;
+  }
+
+  nav ul {
+    padding: 0;
+  }
 }
