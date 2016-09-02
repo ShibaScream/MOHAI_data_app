@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'CooperHewitt';
+    src:url('fonts/CooperHewitt-Book.eot');
+    src:url('fonts/CooperHewitt-Book.eot') format('embedded-opentype'),
+        url('fonts/CooperHewitt-Book.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'CooperHewitt';
+    src:url('fonts/CooperHewitt-BookItalic.eot');
+    src:url('fonts/CooperHewitt-BookItalic.eot') format('embedded-opentype'),
+        url('fonts/CooperHewitt-BookItalic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'CooperHewitt';
+    src:url('fonts/CooperHewitt-Bold.eot');
+    src:url('fonts/CooperHewitt-Bold.eot') format('embedded-opentype'),
+        url('fonts/CooperHewitt-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+html {
+  background-color: #f3d83a;
+}
+body {
+ display: block;
+ margin: auto;
+ padding-top: 5%;
+ padding: 10%;
+}
+
+img {
+  display: block;
+  margin: auto;
+  width: 80%;
+}
+
+footer {
+  display:block;
+  margin: auto;
+  padding: 1%;
+  width: 80%;
+  position: absolute;
+  text-align: center;
+  background-color: #063B5B;
+  color: #fefefe;
+}
+
+nav {
+  float: right;
+}
