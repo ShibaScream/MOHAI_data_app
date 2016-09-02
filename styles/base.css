@@ -50,6 +50,11 @@ footer {
   color: #fefefe;
 }
 
+.clear_fix {
+  clear: both;
+}
+
 nav {
   float: right;
+  display: none;
 }
