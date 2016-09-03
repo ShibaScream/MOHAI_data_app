@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <title>Hello World!</title>
     <meta name="viewport" content="width=device-width" initial-scale="1">
+    <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
-    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/modules.css">
   </head>
   <body>
     <main>
@@ -16,18 +17,8 @@
           <li class="data_icon">Data Visualization</li>
         </ul>
       </nav>
-      <section id="data">
-        <table id="data_table">
-          <tr>
-            <td>pic of data</td>
-            <td>pic of data</td>
-          </tr>
-          <tr>
-            <td>pic of data></data></td>
-            <td>pic of data</td>
-          </tr>
-        </table>
-      </section>
+      <div class="clear_fix">
+      </div>
       <div id="separate">
         <header id="logo">
         <img src="styles/pictures/MOHAI_LOGO.png"></img>
@@ -36,12 +27,41 @@
       <section id="main">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </section>
+      <section id="data">
+        <h1>Here are some Questions</h1>
+        <table id="data_table">
+          <tr>
+            <td id="visual_one">pic of data</td>
+            <td id="visual_two">pic of data</td>
+          </tr>
+          <tr>
+            <td id="visual_three">pic of data</td>
+            <td id="visual_four">pic of data</td>
+          </tr>
+        </table>
+      </section>
+      <section id="visual_page">
+        <h1>Here's some data</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <section id="filter_section">
+          <ul>
+            <li>
+              <select id="filter_li">
+                <option value="">Filter by Demographic</option>
+              </select>
+            </li>
+          </ul>
+        </section>
+        <div id="visual_data_representation">Visual D3 Data Goes here
+        </div>
+      </section>
     </main>
     <footer>
       &copy; CarRenDanJur 2016
     </footer>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.amd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
     <script src="app.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
   </body>

@@ -26,6 +26,7 @@
 html {
   background-color: #f3d83a;
 }
+
 body {
  display: block;
  margin: auto;
@@ -33,10 +34,26 @@ body {
  padding: 10%;
 }
 
+ul {
+  list-style: none;
+}
+
 img {
   display: block;
   margin: auto;
   width: 80%;
+}
+
+table {
+  border: 10px solid #063B5B;
+  border-collapse: collapse;
+  margin: 0 auto;
+  background-color: white;
+}
+
+td {
+  border: 5px solid #063B5B;
+  padding: 15vw;
 }
 
 footer {
@@ -50,6 +67,11 @@ footer {
   color: #fefefe;
 }
 
+.clear_fix {
+  clear: both;
+}
+
 nav {
   float: right;
+  display: none;
 }

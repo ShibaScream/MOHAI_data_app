@@ -3,6 +3,20 @@
   padding-top: 5%;
   padding-bottom: 5%;
 }
+
 #main p {
   padding-top: 5%;
+}
+
+#visual_page {
+  text-align: center;
+  margin: 0 auto;
+}
+
+#visual_page p {
+  text-align: left;
+}
+
+#data h1 {
+  text-align: center;
 }
