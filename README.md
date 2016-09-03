@@ -11,7 +11,7 @@ This app preserves the voices, thoughts and ideas of MOHAI's visitors while simu
 ##MVP/Project Domain Model
 ###User Stories
 - As a user I want to be able to see data from the MOHAI exhibits and learn what other users/patrols have said
-- As a user I should be able to do some basic filtering on the data visualization and discover things on my own
+- As a user I should be able to do some basic filtering on the data visualization and discover things on my own.
 
 ###Developer Stories
 - As a developer I want to implement SMACSS to keep our CSS neat, readable, and easy to fix
