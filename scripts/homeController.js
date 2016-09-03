@@ -5,4 +5,4 @@
     $('#main').show();
   };
   module.homeController = homeController;
-}(window));
+})(window);
