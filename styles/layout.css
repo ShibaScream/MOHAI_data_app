@@ -1,3 +1,9 @@
+.icon-menu{
+  float: right;
+  clear: both;
+  font-size: 2em;
+}
+
 #separate {
   background-color: white;
   padding-top: 5%;
@@ -19,4 +25,14 @@
 
 #data h1 {
   text-align: center;
+}
+
+#menuSelect{
+  background-color: black;
+  position: absolute;
+  right: 50px;
+  bottom: 460px;
+  padding-top: 2%;
+  padding-right: 10%;
+  display: none;
 }
