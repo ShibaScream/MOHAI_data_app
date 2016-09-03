@@ -9,22 +9,53 @@ pg.defaults.ssl = true;
 pg.connect(process.env.DATABASE_URL, function(err, client) {
   if (err) throw err;
   console.log('Connected to postgres! Getting schemas...');
-
-  client
-    .query('SELECT table_schema,table_name FROM information_schema.tables;')
-    .on('row', function(row) {
-      console.log(JSON.stringify(row));
-    });
 });
 
 // Get data by type??
-// app.get('/data/:type', function(req, res){
-//
-// });
+app.get('/countvisitors', function(req, res){
+  var conString = process.env.DATABASE_URL || null;
+  var client = new pg.Client(conString);
+
+  client.connect(function (err) {
+    if (err) throw err;
+    client.query('SELECT COUNT(DISTINCT Visitorpollid) "visitor_count" FROM visitorpoll', function(err, result) {
+      if (err) throw err;
+      client.end(function (err) {
+        if (err) throw err;
+      });
+      console.log({results: result.rows});
+      res.send(result.rows);
+    });
+  });
+});
+
+app.get('/ages', function(req, res){
+  var conString = process.env.DATABASE_URL || null;
+  var client = new pg.Client(conString);
+
+  client.connect(function (err) {
+    if (err) throw err;
+    client.query('SELECT COUNT(DISTINCT visitoranswer.Visitorpollid) "Count", answer.Answertext, question.Questiontext, poll.Polltext ' +
+    	'FROM visitoranswer INNER JOIN question ON visitoranswer.Questionid = question.QuestionID ' +
+      	'INNER JOIN answer ON question.Questionid = answer.Questionid AND visitoranswer.Answerid = answer.Answerid ' +
+      	'INNER JOIN poll ON poll.Pollid = question.Pollid ' +
+      'WHERE poll.Pollid = 7 AND ' +
+    	 'question.Questionid = 7002 ' +
+      'GROUP BY poll.polltext, question.Questiontext, answer.Answertext ',
+      function(err, result) {
+        if (err) throw err;
+        client.end(function (err) {
+          if (err) throw err;
+        });
+        // console.log({results: result.rows});
+        res.send(result.rows);
+      });
+  });
+});
 
 app.get('*', function(req, res) {
   console.log('New request:', request.url);
-  response.sendFile('index.html', { root: '.' });res.send('hello world');
+  response.sendFile('index.html', { root: '.' });
 });
 
 app.listen(port, function() {
