@@ -50,13 +50,6 @@ img {
   width: 80%;
 }
 
-table {
-  border: 10px solid #063B5B;
-  border-collapse: collapse;
-  margin: 0 auto;
-  background-color: white;
-}
-
 td {
   border: 5px solid #063B5B;
   padding: 15vw;

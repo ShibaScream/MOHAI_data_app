@@ -78,8 +78,8 @@ app.get('/ages', function(req, res){
 });
 
 app.get('*', function(req, res) {
-  console.log('New request:', request.url);
-  response.sendFile('index.html', { root: '.' });
+  console.log('New request:', req.url);
+  res.sendFile('index.html', { root: '.' });
 });
 
 app.listen(port, function() {
