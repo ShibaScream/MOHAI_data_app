@@ -1,6 +1,9 @@
 var express = require('express'),
   app = express(),
-  pg = require('pg');
+  pg = require('pg'),
+  port = process.env.PORT || 3000;
+
+app.use(express.static('./'));
 
 pg.defaults.ssl = true;
 pg.connect(process.env.DATABASE_URL, function(err, client) {
@@ -14,10 +17,16 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
     });
 });
 
-app.get('/', function(req, res) {
-  res.send('hello world');
+// Get data by type??
+// app.get('/data/:type', function(req, res){
+//
+// });
+
+app.get('*', function(req, res) {
+  console.log('New request:', request.url);
+  response.sendFile('index.html', { root: '.' });res.send('hello world');
 });
 
-app.listen(3000, function() {
-  console.log('example app listening on port 3000');
+app.listen(port, function() {
+  console.log('example app listening on ' + port);
 });
