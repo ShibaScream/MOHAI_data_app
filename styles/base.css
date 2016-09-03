@@ -34,8 +34,10 @@ body {
  padding: 10%;
 }
 
-ul {
+nav ul {
   list-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
 img {
@@ -71,7 +73,10 @@ footer {
   clear: both;
 }
 
-nav {
-  float: right;
-  display: none;
+nav li{
+  color: white;
+  padding: 7px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

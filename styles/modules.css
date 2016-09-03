@@ -1,19 +1,53 @@
 @media only screen and (min-width: 600px){
   /*=====larger screens =====*/
+  main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   img {
     max-width: 960px;
   }
 
   nav {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 
   nav li {
-    display: inline-block;
-    padding-left:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 150%;
+    padding: 0 60px;
+    color: black;
   }
 
   nav ul {
     padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
+
+  .icon-menu{
+    visibility: hidden;
+  }
+
+  .icon{
+    font-size: 150%;
+    color: black;
+  }
+
+    #menuSelect{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      background-color: #f3d83a;
+      position: inherit;
+      margin-left: 10%;
+    }
+
 }
