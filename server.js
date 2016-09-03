@@ -53,7 +53,7 @@ app.get('/ages', function(req, res){
   });
 });
 
-app.get('*', function(req, res) {d
+app.get('*', function(req, res) {
   console.log('New request:', request.url);
   response.sendFile('index.html', { root: '.' });
 });
