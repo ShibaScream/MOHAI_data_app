@@ -30,8 +30,8 @@
 #menuSelect{
   background-color: black;
   position: absolute;
-  right: 50px;
-  bottom: 460px;
+  /*right: 50px;
+  bottom: 460px;*/
   padding-top: 2%;
   padding-right: 10%;
   display: none;

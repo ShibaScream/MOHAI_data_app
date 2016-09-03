@@ -23,8 +23,8 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 // });
 
 app.get('*', function(req, res) {
-  console.log('New request:', request.url);
-  response.sendFile('index.html', { root: '.' });res.send('hello world');
+  console.log('New request:', req.url);
+  res.sendFile('index.html', { root: '.' });
 });
 
 app.listen(port, function() {

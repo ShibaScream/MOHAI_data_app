@@ -1,5 +1,5 @@
 (function(module) {
-  homeController = {};
+  var homeController = {};
   homeController.index = function() {
     $('.tab-content').hide();
     $('#main').show();
