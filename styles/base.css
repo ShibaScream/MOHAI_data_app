@@ -50,6 +50,11 @@ img {
   width: 80%;
 }
 
+#i_frame {
+  height: 500px;
+  width: 100%;
+}
+
 td {
   border: 5px solid #063B5B;
   padding: 15vw;
