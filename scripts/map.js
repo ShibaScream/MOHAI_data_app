@@ -5,15 +5,6 @@
   mapObj.parsedLocation = [];
 
 // get visitor location data and query google api
-  // mapObj.severReq = function(callback) {
-  //   $.get('/location').then(function(data) {
-  //       data.forEach(function(ele) {
-  //         mapObj.parsedLocation.push(ele.answertext.split(' ').join('+'));
-  //       });
-  //       console.log(mapObj.parsedLocation);
-  //   }).done(callback);
-  // };
-
   mapObj.googleReq = function(callback) {
     $.ajax({
         url: '/location',
@@ -38,12 +29,12 @@
     });
   };
 
-  mapObj.googleReq();
-
   module.mapObj = mapObj;
 })(window);
 
-//
+mapObj.googleReq();
+
+
 //perform google geocoding request and pull lat/lon
 // mapObj.mapRenderReq = function(data){
 //   console.log(data);
