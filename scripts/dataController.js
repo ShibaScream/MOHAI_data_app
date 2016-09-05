@@ -5,5 +5,6 @@
     $('#visual_page').show();
     $('#filter_section').show();
   };
+  
   module.dataController = dataController;
 })(window);
