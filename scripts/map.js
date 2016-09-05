@@ -1,24 +1,26 @@
 // (function(module){
-//
-//   mapObj.visitorLocation = function() {
-//   $.get('/location').done(function(data) {
-//       console.log('inside vistitor location function');
-//       return data
-//     });
-//   };
-//
-//   // mapObj.filterLocation = function(arr) {
-//   //   console.log(arr);
-//   //   arr.filter(
-//   //   });
-//   // };
-// //
-//
-//   module.mapObj = mapObj;
+
+//get visitor location data
+  mapObj.visitorLocation = function() {
+  $.get('/location').done(function(data) {
+      // console.log(data.location);
+      console.log(data);
+      return data
+    });
+  };
+
+// //perform google geocoding request
+// mapObj.googleReq = function(visitor) {
+//   $.get('http://maps.googleapis.com/maps/api/geocode/outputFormat?parameters')
+// }
+
+
+  // module.mapObj = mapObj;
 // })(window);
+
+mapObj.visitorLocation();
 //
-// mapObj.visitorLocation();
-//
+// //render map
 // function initMap(result) {
 //   var map;
 //
