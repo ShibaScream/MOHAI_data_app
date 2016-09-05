@@ -4,21 +4,19 @@
 
   mainView.menuToggle = function(){
     $('#menuToggle').on('click', function(){
-      $('#menuSelect').toggle();
+      $('.menuSelect').toggle();
     });
   };
   mainView.menuToggle();
 
-  // $(window).on('resize', function() {
-  //   if($(window).width() <= 600) {
-  //     $('nav').show();
-  //     console.log('resize fucker');
-  //   } else {
-  //     $('nav').hide();
-  //     $('menuSelect').show();
-  //     console.log('smaller window');
-  //   }
-  // });
+  $(window).on('resize', function() {
+    if($(window).width() >= 600) {
+      $('.menuSelect').show();
+    } else {
+      $('.menuSelect').hide();
+      // $('.menuSelect').show();
+    }
+  });
 
   module.mainView = mainView;
 })(window);
