@@ -5,7 +5,7 @@
   mapObj.parsedLocation = [];
 
 //** dont forget to delete
-  mapObj.dummyData = ['afghanistan', 'iraq', 'india'];
+  // mapObj.dummyData = ['afghanistan', 'iraq', 'india'];
 
 // get visitor location data and query google api
   mapObj.googleReq = function(callback) {
@@ -19,7 +19,7 @@
         })
       }
     }).then(function() {
-      mapObj.dummyData.forEach(function(ele) {  ////dont forget to change dummy data back
+      mapObj.parsedLocation.forEach(function(ele) {  ////dont forget to change dummy data back to parsedLocation
         $.ajax({
             url: 'https://maps.googleapis.com/maps/api/geocode/json?&address=' + ele + '&key=AIzaSyB3pPN8d00FXzTZOjGUHKapkreiitMwfxE',
             type: 'GET',
@@ -31,7 +31,7 @@
                 // console.log(data.geometry);
                 mapObj.geoCodeJSON.push(data.geometry);
               });
-            }).then(mapObj.mapRender().one());
+            })
         });
       });
   };
@@ -46,10 +46,11 @@
       map = new
       google.maps.Map(document.getElementById('i_frame'), {
         scrollwheel: true,
-        zoom: 4
+        zoom: 3
       });
 
       mapObj.geoCodeJSON.forEach(function(ele) {
+
         var marker = new google.maps.Marker({
           position: ele.location,
           map: map,
@@ -73,3 +74,4 @@
 })(window);
 
 mapObj.googleReq();
+setTimeout(function() { mapObj.mapRender(); }, 1300);
