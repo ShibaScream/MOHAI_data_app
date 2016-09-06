@@ -1,8 +1,8 @@
-.bar rect {
-  fill: steelblue;
+line, path, .domain, .bar {
+  stroke: black;
+  fill: none;
 }
 
-.bar text {
-  fill: #fff;
-  font: 10px sans-serif;
+text{
+  fill: black;
 }
