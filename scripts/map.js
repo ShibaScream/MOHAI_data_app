@@ -4,6 +4,7 @@
   mapObj.geoCodeJSON = [];
   mapObj.parsedLocation = [];
   mapObj.markers = [];
+  mapObj.dbData = [];
 
 //** dont forget to delete
   // mapObj.dummyData = ['afghanistan', 'iraq', 'india'];
@@ -12,34 +13,40 @@
   mapObj.googleReq = function(callback) {
     this.mapRender();
     $.get('/location', function(data) {
-      mapObj.parsedLocation = data.map(function(d) {
+      mapObj.dbData = data;
+      mapObj.dbData.forEach(function(d) {
         if (d.answertext === 'Washington') {
-          d.answertext += '+State';
+          d.geoAddress = d.answertext + '+State';
         };
-        return d.answertext.replace(/\s+/g, '+');
+        d.geoAddress = d.answertext.replace(/\s+/g, '+');
+        return d.geoAddress;
       });
     }).then(function() {
-      mapObj.geoCodeJSON = mapObj.parsedLocation.map(function(location) {
+      var i = 0;
+      mapObj.dbData.forEach(function(location) {
+        i += 1;
         // because Google gets mad
-        // setTimeout(function() {
-        //   mapObj.geocoder.geocode({'address': location}, function(results, status) {
-        //     if (status === 'OK') {
-        //       console.log(status);
-        //       if (results[0]) {
-        //         console.log(results[0].geometry.location);
-        //         mapObj.addMarker(results[0].geometry.location);
-        //       } else {
-        //         console.error('no results found');
-        //       }
-        //     } else {
-        //       console.error('Geocoder failed due to: ' + status);
-        //     }
-        //   });
-        // }, 100000);
-        $.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + location + '&key=AIzaSyB3pPN8d00FXzTZOjGUHKapkreiitMwfxE')
-        .then(function(data) {
-          return data.results[0].location;
-        });
+        setTimeout(function() {
+          mapObj.geocoder.geocode({'address': location.geoAddress}, function(results, status) {
+            if (status === 'OK') {
+              console.log(status);
+              if (results[0]) {
+                var geoData = results[0].geometry.location
+                location.geoData = geoData;
+                console.log(geoData);
+                mapObj.addMarker(geoData);
+              } else {
+                console.error('no results found');
+              }
+            } else {
+              console.error('Geocoder failed due to: ' + status);
+            }
+          });
+        }, 250 * i);
+        // $.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + location + '&key=AIzaSyB3pPN8d00FXzTZOjGUHKapkreiitMwfxE')
+        // .then(function(data) {
+        //   return data.results[0].location;
+        // });
       });
     });
   };
