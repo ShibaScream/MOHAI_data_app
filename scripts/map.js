@@ -1,0 +1,86 @@
+(function(module) {
+
+  mapObj = {};
+  mapObj.geoCodeJSON = [];
+  mapObj.parsedLocation = [];
+  mapObj.markers = [];
+  mapObj.dbData = [];
+
+//** dont forget to delete
+  // mapObj.dummyData = ['afghanistan', 'iraq', 'india'];
+
+// get visitor location data and query google api
+  mapObj.googleReq = function(callback) {
+    this.mapRender();
+    $.get('/location', function(data) {
+      mapObj.dbData = data;
+      mapObj.dbData.forEach(function(d) {
+        if (d.answertext === 'Washington') {
+          d.geoAddress = d.answertext + '+State';
+        };
+        d.geoAddress = d.answertext.replace(/\s+/g, '+');
+        return d.geoAddress;
+      });
+    }).then(function() {
+      var i = 0;
+      mapObj.dbData.forEach(function(location) {
+        i += 1;
+        // because Google gets mad
+        setTimeout(function() {
+          mapObj.geocoder.geocode({'address': location.geoAddress}, function(results, status) {
+            if (status === 'OK') {
+              console.log(status);
+              if (results[0]) {
+                var geoData = results[0].geometry.location
+                location.geoData = geoData;
+                console.log(geoData);
+                mapObj.addMarker(geoData);
+              } else {
+                console.error('no results found');
+              }
+            } else {
+              console.error('Geocoder failed due to: ' + status);
+            }
+          });
+        }, 250 * i);
+        // $.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + location + '&key=AIzaSyB3pPN8d00FXzTZOjGUHKapkreiitMwfxE')
+        // .then(function(data) {
+        //   return data.results[0].location;
+        // });
+      });
+    });
+  };
+
+  //pull lat/lon from geocodeJSON and render map
+  mapObj.mapRender = function() {
+    mapObj.map;
+    mapObj.geocoder;
+
+    console.log('inside map render');
+
+    mapObj.map = new
+    google.maps.Map(document.getElementById('i_frame'), {
+      scrollwheel: true,
+      zoom: 2,
+      center: {lat: 47.608013, lng: -122.335167}
+    });
+
+    mapObj.geocoder = new google.maps.Geocoder;
+
+  };
+
+  mapObj.addMarker = function(location) {
+    var marker = new google.maps.Marker({
+      // fix position
+      position: location,
+      map: mapObj.map,
+      animation: google.maps.Animation.DROP,
+      icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    });
+
+    this.markers.push(marker);
+
+  };
+
+  module.mapObj = mapObj;
+})(window);
