@@ -21,21 +21,29 @@
     }).then(function() {
       mapObj.geoCodeJSON = mapObj.parsedLocation.map(function(location) {
         // because Google gets mad
-        setTimeout(function() {
-          mapObj.geocoder.geocode({'address': location}, function(results, status) {
-            if (status === 'OK') {
-              console.log(status);
-              if (results[0]) {
-                console.log(results[0].geometry.location);
-                mapObj.addMarker(results[0].geometry.location);
-              } else {
-                console.error('no results found');
-              }
-            } else {
-              console.error('Geocoder failed due to: ' + status);
-            }
+        // setTimeout(function() {
+        //   mapObj.geocoder.geocode({'address': location}, function(results, status) {
+        //     if (status === 'OK') {
+        //       console.log(status);
+        //       if (results[0]) {
+        //         console.log(results[0].geometry.location);
+        //         mapObj.addMarker(results[0].geometry.location);
+        //       } else {
+        //         console.error('no results found');
+        //       }
+        //     } else {
+        //       console.error('Geocoder failed due to: ' + status);
+        //     }
+        //   });
+        // }, 100000);
+        $.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + location + '&key=AIzaSyB3pPN8d00FXzTZOjGUHKapkreiitMwfxE')
+        .then(function(data) {
+          data.results.forEach(function(d) {
+            // console.log(data.geometry);
+            // console.log(d);
+            mapObj.geoCodeJSON.push(d.geometry);
           });
-        }, 100000);
+        });
       });
     });
   };
