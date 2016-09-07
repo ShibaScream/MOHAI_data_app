@@ -5,13 +5,13 @@
     var svg = d3.select('#' + selector)
       .append('svg')
         .attr('id', newID)
-        .attr('height', height)
-        .attr('width', width);
+        .attr('viewBox', '0 0 ' + width + ' ' + height )
+        .attr('preserveAspectRatio', 'xMidYMid meet');
   };
 
   visualization.ages = function() {
-    var width = 500,
-      height = 300;
+    var width = 800,
+      height = .2 * width;
 
     visualization.createSVG('age_groups', 'age_graph', width, height);
 
@@ -26,7 +26,7 @@
       var newRects = rects.enter();
 
       var maxCount = d3.max(data, function (d, i) {
-        return parseInt(d.Count, 10);
+        return +d.Count;
       });
 
       // in d3 v4, it is no longer d3.scale.linear() ==> use d3.scaleLinear()
@@ -46,7 +46,7 @@
         .attr('y', function (d, i) { return y(d.answertext); })
         .attr('height', y.bandwidth())
         .attr('width', function(d, i) {
-          return x(parseInt(d.Count, 10));
+          return x(+d.Count, 10);
         });
     });
   };

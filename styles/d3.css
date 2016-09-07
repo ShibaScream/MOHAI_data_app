@@ -1,8 +1,6 @@
-line, path, .domain, .bar {
-  stroke: black;
-  fill: none;
-}
-
-text{
-  fill: black;
-}
+svg {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  background: gray;
+};
