@@ -1,8 +1,8 @@
 (function(module) {
 
   mapObj = {};
-  mapObj.geoCodeJSON = [];
-  mapObj.parsedLocation = [];
+  // mapObj.geoCodeJSON = [];
+  // mapObj.parsedLocation = [];
   mapObj.markers = [];
   mapObj.dbData = [];
 
@@ -13,28 +13,38 @@
   mapObj.googleReq = function(callback) {
     this.mapRender();
     $.get('/location', function(data) {
-      mapObj.dbData = data;
-      mapObj.dbData.forEach(function(d) {
+      // instead of separate arrays, I am mapping the new data and including the
+      // the original properties--that way it will be easier to post the data
+      // back to the database
+      mapObj.dbData = data.map(function(d) {
+        // google gets confused about "Washington"--defaults to Washington DC
+        // the geoAddress is used to query the geocoder
         if (d.answertext === 'Washington') {
           d.geoAddress = d.answertext + '+State';
         };
         d.geoAddress = d.answertext.replace(/\s+/g, '+');
-        return d.geoAddress;
+        return d;
       });
     }).then(function() {
       var i = 0;
       mapObj.dbData.forEach(function(location) {
+        /**
+        TO DO: check if geoData already exists on each location
+          if geoData exists, then addMarker
+          else, query geocoder
+        **/
+        // because Google gets mad: the i multiplies the delay by every iteration
         i += 1;
-        // because Google gets mad
         setTimeout(function() {
           mapObj.geocoder.geocode({'address': location.geoAddress}, function(results, status) {
             if (status === 'OK') {
               console.log(status);
               if (results[0]) {
-                var geoData = results[0].geometry.location
+                var geoData = results[0].geometry.location;
                 location.geoData = geoData;
                 console.log(geoData);
                 mapObj.addMarker(geoData);
+                // TO DO: POST the new geoData to database, use an UPDATE sql statement (in server.js)
               } else {
                 console.error('no results found');
               }
@@ -43,10 +53,6 @@
             }
           });
         }, 250 * i);
-        // $.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + location + '&key=AIzaSyB3pPN8d00FXzTZOjGUHKapkreiitMwfxE')
-        // .then(function(data) {
-        //   return data.results[0].location;
-        // });
       });
     });
   };
