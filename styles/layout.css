@@ -4,6 +4,10 @@
   font-size: 2em;
 }
 
+.icon-menu .icon-home .icon-about{
+  color: black;
+}
+
 #separate {
   background-color: white;
   padding-top: 5%;
@@ -27,12 +31,8 @@
   text-align: center;
 }
 
-#menuSelect{
-  background-color: black;
-  position: absolute;
-  /*right: 50px;
-  bottom: 460px;*/
-  padding-top: 2%;
-  padding-right: 10%;
+.menuSelect{
+  background-color: #f3d83a;
+  /*position: relative;*/
   display: none;
 }

@@ -4,32 +4,32 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-
-  img {
-    max-width: 960px;
+    padding: 2% 5%;
   }
 
   nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    /*background-color: #f3d83a;*/
   }
 
   nav li {
+    background-color: #f3d83a;
     display: flex;
     flex-direction: row;
     justify-content: center;
     font-size: 150%;
-    padding: 0 60px;
+    padding: 0 20%;
     color: black;
   }
 
   nav ul {
-    padding: 0;
+    padding: 5px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+  }
+
+  img {
+    max-width: 40%;
   }
 
   .icon-menu{
@@ -37,17 +37,12 @@
   }
 
   .icon{
-    font-size: 150%;
-    color: black;
+    font-size: 100%;
   }
 
-    #menuSelect{
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      background-color: #f3d83a;
-      position: inherit;
-      margin-left: 10%;
+  .menuSelect{
+    display: block;
+    border-radius: 50px;
+    padding: .5% 10%;
     }
-
 }
