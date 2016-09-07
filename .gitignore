@@ -2,3 +2,5 @@ node_modules
 mapKey.js
 
 .DS_Store
+
+*.log
