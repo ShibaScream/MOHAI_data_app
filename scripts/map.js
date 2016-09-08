@@ -33,26 +33,42 @@
           if geoData exists, then addMarker
           else, query geocoder
         **/
-        // because Google gets mad: the i multiplies the delay by every iteration
-        i += 1;
-        setTimeout(function() {
-          mapObj.geocoder.geocode({'address': location.geoAddress}, function(results, status) {
-            if (status === 'OK') {
-              console.log(status);
-              if (results[0]) {
-                var geoData = results[0].geometry.location;
-                location.geoData = geoData;
-                console.log(geoData);
-                mapObj.addMarker(geoData);
-                // TO DO: POST the new geoData to database, use an UPDATE sql statement (in server.js)
+        if(location.geoData) {
+          // console.log(geoData);
+          mapObj.addMarker(geoData);
+        } else {
+          // because Google gets mad: the i multiplies the delay by every iteration
+          i += 1;
+          setTimeout(function() {
+            mapObj.geocoder.geocode({'address': location.geoAddress}, function(results, status) {
+              if (status === 'OK') {
+                console.log(status);
+                if (results[0]) {
+                  var geoData = results[0];
+                  location.lat = geoData.geometry.location.lat();
+                  location.lng = geoData.geometry.location.lng();
+                  location.country = geoData.address_components[5].long_name;
+                  location.state = geoData.address_components[4].long_name;
+                  console.log(geoData);
+                  mapObj.addMarker(geoData);
+                  // TO DO: POST the new geoData to database, use an UPDATE sql statement (in server.js)
+                  $.ajax({
+                    type: 'PUT',
+                    url: '/locationupdate',
+                    data: JSON.stringify(location),
+                    dataType: 'JSON'
+                  }).done(function(){
+                    console.log('updated table');
+                  });
+                } else {
+                  console.error('no results found');
+                }
               } else {
-                console.error('no results found');
+                console.error('Geocoder failed due to: ' + status);
               }
-            } else {
-              console.error('Geocoder failed due to: ' + status);
-            }
-          });
-        }, 250 * i);
+            });
+          }, 250 * i);
+        };
       });
     });
   };
