@@ -33,32 +33,38 @@
           if geoData exists, then addMarker
           else, query geocoder
         **/
-        if(location.geoData) {
+        if(location.lat && location.lng) {
           // console.log(geoData);
-          mapObj.addMarker(geoData);
+          mapObj.addMarker({
+            lat: +location.lat,
+            lng: +location.lng
+          });
         } else {
           // because Google gets mad: the i multiplies the delay by every iteration
           i += 1;
           setTimeout(function() {
             mapObj.geocoder.geocode({'address': location.geoAddress}, function(results, status) {
               if (status === 'OK') {
-                console.log(status);
                 if (results[0]) {
                   var geoData = results[0];
+                  console.log('geodata = ', geoData);
                   location.lat = geoData.geometry.location.lat();
                   location.lng = geoData.geometry.location.lng();
-                  location.country = geoData.address_components[5].long_name;
-                  location.state = geoData.address_components[4].long_name;
-                  console.log(geoData);
-                  mapObj.addMarker(geoData);
+                  // location.country = geoData.address_components[5].long_name();
+                  // location.state = geoData.address_components[4].long_name();
+                  mapObj.addMarker(geoData.geometry.location);
                   // TO DO: POST the new geoData to database, use an UPDATE sql statement (in server.js)
                   $.ajax({
                     type: 'PUT',
                     url: '/locationupdate',
-                    data: JSON.stringify(location),
-                    dataType: 'JSON'
+                    contentType: 'application/json',
+                    data: JSON.stringify(location)
                   }).done(function(){
                     console.log('updated table');
+                  }).always(function(){
+                    console.log('sent location data');
+                  }).fail(function(){
+                    console.error('location data did not update in postgres');
                   });
                 } else {
                   console.error('no results found');
