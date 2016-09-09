@@ -4,7 +4,7 @@
   aboutController.index = function() {
     $('.tab-content').hide();
     $('#about_visitors').show();
-    module.visualization.ages();
+    // module.visualization.ages();
     // mapObj.googleReq(mapObj.mapRender);
   };
   module.aboutController = aboutController;
