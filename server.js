@@ -133,28 +133,53 @@ app.get('/data/*', function(req, res){
   case 'innovation':
     question = 7010;
     break;
+  case 'all':
+    question = null;
+    break;
   }
 
   console.log('received request for ' + req.params[0] + ', which = ' + question);
 
-  client.connect(function (err) {
-    if (err) throw err;
-    client.query('SELECT COUNT(DISTINCT visitoranswer.Visitorpollid) "Count", answer.Answertext, question.Questiontext, poll.Polltext ' +
-    	'FROM visitoranswer INNER JOIN question ON visitoranswer.Questionid = question.QuestionID ' +
-      	'INNER JOIN answer ON question.Questionid = answer.Questionid AND visitoranswer.Answerid = answer.Answerid ' +
-      	'INNER JOIN poll ON poll.Pollid = question.Pollid ' +
-      'WHERE poll.Pollid = 7 AND ' +
-    	 'question.Questionid = $1 ' +
-      'GROUP BY poll.polltext, question.Questiontext, answer.Answertext ', [question],
-      function(err, result) {
-        if (err) throw err;
-        client.end(function (err) {
+  // get a specific question data
+  if (question) {
+    client.connect(function (err) {
+      if (err) throw err;
+      client.query('SELECT COUNT(DISTINCT visitoranswer.Visitorpollid) "Count", answer.Answertext, question.Questiontext, poll.Polltext ' +
+      	'FROM visitoranswer INNER JOIN question ON visitoranswer.Questionid = question.QuestionID ' +
+        	'INNER JOIN answer ON question.Questionid = answer.Questionid AND visitoranswer.Answerid = answer.Answerid ' +
+        	'INNER JOIN poll ON poll.Pollid = question.Pollid ' +
+        'WHERE poll.Pollid = 7 AND ' +
+      	 'question.Questionid = $1 ' +
+        'GROUP BY poll.polltext, question.Questiontext, answer.Answertext ', [question],
+        function(err, result) {
           if (err) throw err;
+          client.end(function (err) {
+            if (err) throw err;
+          });
+          // console.log({results: result.rows});
+          res.send(result.rows);
         });
-        // console.log({results: result.rows});
-        res.send(result.rows);
-      });
-  });
+    });
+  // get all question / answer data
+  } else {
+    client.connect(function (err) {
+      if (err) throw err;
+      client.query('SELECT COUNT(DISTINCT visitoranswer.Visitorpollid) "Count", answer.Answertext, question.Questiontext, poll.Polltext ' +
+      	'FROM visitoranswer INNER JOIN question ON visitoranswer.Questionid = question.QuestionID ' +
+        'INNER JOIN answer ON question.Questionid = answer.Questionid AND visitoranswer.Answerid = answer.Answerid ' +
+        'INNER JOIN poll ON poll.Pollid = question.Pollid ' +
+        'WHERE poll.Pollid = 7 AND question.Questionid > 7005 ' +
+        'GROUP BY poll.polltext, question.Questiontext, answer.Answertext; ',
+        function(err, result) {
+          if (err) throw err;
+          client.end(function (err) {
+            if (err) throw err;
+          });
+          // console.log({results: result.rows});
+          res.send(result.rows);
+        });
+    });
+  }
 });
 
 app.get('*', function(req, res) {
