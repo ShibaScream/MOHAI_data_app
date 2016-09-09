@@ -56,13 +56,15 @@ app.get('/location', function(req, res){
 
   client.connect(function (err) {
     if (err) throw err;
-    client.query('SELECT COUNT(DISTINCT visitoranswer.Visitorpollid) "Count", answer.Answertext, answer.country, answer.state, answer.lat, answer.lng, question.Questiontext, poll.Polltext ' +
-    	'FROM visitoranswer INNER JOIN question ON visitoranswer.Questionid = question.QuestionID ' +
-      	'INNER JOIN answer ON question.Questionid = answer.Questionid AND visitoranswer.Answerid = answer.Answerid ' +
-      	'INNER JOIN poll ON poll.Pollid = question.Pollid ' +
-      'WHERE poll.Pollid = 7 AND ' +
-    	 'question.Questionid = 7005 ' +
-      'GROUP BY poll.polltext, question.Questiontext, answer.Answertext, answer.country, answer.state, answer.lat, answer.lng',
+    client.query('SELECT COUNT(DISTINCT visitoranswer.Visitorpollid) AS "count", ' +
+      '(CASE when question.Questionid = 7005 then answer.Answertext end) AS "country_answer", ' +
+      '(CASE when question.Questionid = 7004 then answer.Answertext end) AS "state_answer", ' +
+      'answer.country, answer.state, answer.lat, answer.lng, question.Questiontext, poll.Polltext ' +
+      'FROM visitoranswer INNER JOIN question ON visitoranswer.Questionid = question.QuestionID ' +
+      'INNER JOIN answer ON question.Questionid = answer.Questionid AND visitoranswer.Answerid = answer.Answerid ' +
+      'INNER JOIN poll ON poll.Pollid = question.Pollid ' +
+      'WHERE poll.Pollid = 7 AND question.Questionid = 7005 OR question.Questionid = 7004 ' +
+      'GROUP BY poll.polltext, question.Questiontext, question.Questionid, answer.Answertext, answer.country, answer.state, answer.lat, answer.lng;',
       function(err, result) {
         if (err) throw err;
         client.end(function (err) {
