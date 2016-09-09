@@ -19,10 +19,13 @@
       mapObj.dbData = data.map(function(d) {
         // google gets confused about "Washington"--defaults to Washington DC
         // the geoAddress is used to query the geocoder
-        if (d.answertext === 'Washington') {
-          d.geoAddress = d.answertext + '+State';
-        };
-        d.geoAddress = d.answertext.replace(/\s+/g, '+');
+        if (d.country_answer) {
+          d.geoAddress = 'country+=+' + d.country_answer.replace(/\s+/g, '+');
+        } else if (d.state_answer) {
+          d.geoAddress = 'state+=+' + d.state_answer.replace(/\s+/g, '+');
+        } else {
+          console.error('this is bad data');
+        }
         return d;
       });
     }).then(function() {
@@ -47,33 +50,31 @@
               if (status === 'OK') {
                 if (results[0]) {
                   var geoData = results[0];
-                  console.log('geodata = ', geoData);
                   location.lat = geoData.geometry.location.lat();
                   location.lng = geoData.geometry.location.lng();
-                  // location.country = geoData.address_components[5].long_name();
-                  // location.state = geoData.address_components[4].long_name();
+                  if (geoData.address_components.length === 1) {
+                    location.country = geoData.address_components[0].long_name;
+                  } else if (geoData.address_components.length === 2) {
+                    location.state = geoData.address_components[0].long_name;
+                    location.country = geoData.address_components[1].long_name;
+                  }
                   mapObj.addMarker(geoData.geometry.location);
-                  // TO DO: POST the new geoData to database, use an UPDATE sql statement (in server.js)
                   $.ajax({
                     type: 'PUT',
                     url: '/locationupdate',
                     contentType: 'application/json',
                     data: JSON.stringify(location)
-                  }).done(function(){
-                    console.log('updated table');
-                  }).always(function(){
-                    console.log('sent location data');
                   }).fail(function(){
                     console.error('location data did not update in postgres');
                   });
                 } else {
-                  console.error('no results found');
+                  console.error('no results found for ' + location.geoAddress);
                 }
               } else {
-                console.error('Geocoder failed due to: ' + status);
+                console.error('Geocoder failed due to: ' + status + ' for ' + location.geoAddress);
               }
             });
-          }, 250 * i);
+          }, 500 * i);
         };
       });
     });
