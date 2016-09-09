@@ -1,18 +1,12 @@
 (function(module) {
   visualization = {};
 
-<<<<<<< HEAD
-  visualization.verticalBarChart = function() {
+  visualization.verticalBarChart = function(data) {
+console.log('inside graph render');
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 50, bottom: 30, left: 50},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
-=======
-  // set the dimensions and margins of the graph
-  var margin = {top: 20, right: 50, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
->>>>>>> 9c3e7e3873363c4aee4c65739d564e9db82153b8
 
     // set the ranges
     var x = d3.scaleBand()
@@ -24,7 +18,7 @@
     // append the svg object to the body of the page
     // append a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
-    var svg = d3.select('#age_groups').append('svg')
+    var svg = d3.select('#visual_data').append('svg')
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
       .append('g')
@@ -32,7 +26,7 @@
               'translate(' + margin.left + ',' + margin.top + ')');
 
     // get the data
-    $.get('/ages', function(data) {
+    // $.get('/ages', function(data) {
       // if (error) throw error;
 
       // format the data
@@ -63,7 +57,7 @@
       // add the y Axis
       svg.append('g')
           .call(d3.axisLeft(y));
-    });
+    // });
   };
 
 
