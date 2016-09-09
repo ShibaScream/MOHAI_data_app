@@ -1,11 +1,18 @@
 (function(module) {
   visualization = {};
 
+<<<<<<< HEAD
   visualization.verticalBarChart = function() {
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 50, bottom: 30, left: 50},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
+=======
+  // set the dimensions and margins of the graph
+  var margin = {top: 20, right: 50, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+>>>>>>> 9c3e7e3873363c4aee4c65739d564e9db82153b8
 
     // set the ranges
     var x = d3.scaleBand()
