@@ -4,6 +4,7 @@
   "description": "This app preserves the voices, thoughts and ideas of MOHAI's visitors while simultaneously opening up that data to the community as a whole so it can be talked about and analyzed.",
   "main": "server.js",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "pg": "6.1.0"
   },
