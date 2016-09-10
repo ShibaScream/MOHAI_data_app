@@ -37,7 +37,6 @@
       .map(function(obj){
         return obj[property]
       });
-
     uniquestions.forEach(function(ele) {
       var optionTag = '<option value="' + ele + '">' + ele + '</option>';
       $('#question_selection').append(optionTag);
@@ -48,7 +47,6 @@
     var results = dataHandler.all.filter(function(obj){
       return obj.questiontext === option;
     })
-
     return results;
   }
 
