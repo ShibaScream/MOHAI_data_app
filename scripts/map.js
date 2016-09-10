@@ -106,11 +106,11 @@
     var infoContent = function() {
       var result;
       if (location.state) {
-        result = '<h3>State: ' + location.state + '</h3>';
+        result = '<h3 class=\'infowindow\'>State: ' + location.state + '</h3>';
       } else {
-        result = '<h3>Country: ' + location.country + '</h3>';
+        result = '<h3 class=\'infowindow\'>Country: ' + location.country + '</h3>';
       };
-      result += '<h4>Number of Visitors: ' + location.count + '</h4>';
+      result += '<h4 class=\'infowindow\'>Number of Visitors: ' + location.count + '</h4>';
       return result;
     };
     var marker = new google.maps.Marker({
@@ -123,8 +123,8 @@
     marker.info = new google.maps.InfoWindow({
       content: infoContent()
     });
-    mapObj.map.panTo(position);
     marker.addListener('click', function() {
+      mapObj.map.panTo(position);
       mapObj.hideLastInfoWindow();
       marker.info.open(mapObj.map, marker);
       mapObj.lastOpenInfoWindow = marker.info;
