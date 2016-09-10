@@ -1,3 +1,9 @@
+#i_frame {
+  height: 30em;
+  width: 100%;
+  margin: 0 auto;
+}
+
 @media only screen and (min-width: 600px){
   /*=====larger screens =====*/
   main{
@@ -42,7 +48,13 @@
 
   .menuSelect{
     display: block;
-    border-radius: 50px;
+    border-radius: 10px;
     padding: .5% 10%;
     }
+
+  #i_frame {
+    height: 30em;
+    width: 90%;
+    margin: 0 auto;
+  }
 }

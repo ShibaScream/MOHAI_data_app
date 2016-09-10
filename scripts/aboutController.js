@@ -4,8 +4,11 @@
   aboutController.index = function() {
     $('.tab-content').hide();
     $('#about_visitors').show();
-    // module.visualization.ages();
-    // mapObj.googleReq(mapObj.mapRender);
+    $.get('/data/age', function(data){
+      $('#age_groups').empty();
+      window.visualization.verticalBarChart(data, '#age_groups');
+    });
+    mapObj.googleReq(mapObj.mapRender);
   };
   module.aboutController = aboutController;
 })(window);

@@ -82,7 +82,7 @@
     mapObj.map = new
     google.maps.Map(document.getElementById('i_frame'), {
       scrollwheel: true,
-      zoom: 2,
+      zoom: 3,
       center: {lat: 47.608013, lng: -122.335167}
     });
     mapObj.geocoder = new google.maps.Geocoder;

@@ -30,6 +30,7 @@ html {
 body {
  /*background-image: url("http://a3.files.airows.com/image/upload/c_fit,cs_srgb,w_620/MTI4OTk3NjMyNTMzMjUyMTA2.png");*/
  display: block;
+ font-family: 'CooperHewitt', sans-serif;
 }
 
 main {
@@ -85,15 +86,20 @@ ul {
   padding-bottom: 0;
 }
 
-#i_frame {
-  height: 500px;
-  width: 100%;
-}
-
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: white;
   text-align: center;
   font-family: 'CooperHewitt';
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 700;
 }
 
 p{
