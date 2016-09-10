@@ -4,7 +4,7 @@
   visualization.verticalBarChart = function(data) {
   console.log('inside graph render');
     // set the dimensions and margins of the graph
-    var margin = {top: 20, right: 50, bottom: 50, left: 50},
+    var margin = {top: 25, right: 50, bottom: 175, left: 50},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
@@ -24,10 +24,6 @@
       .append('g')
         .attr('transform',
               'translate(' + margin.left + ',' + margin.top + ')');
-
-    // get the data
-    // $.get('/ages', function(data) {
-      // if (error) throw error;
 
       // format the data
       data.forEach(function(d) {
@@ -52,7 +48,13 @@
       // add the x Axis
       svg.append('g')
           .attr('transform', 'translate(0,' + height + ')')
-          .call(d3.axisBottom(x));
+          .call(d3.axisBottom(x))
+          .selectAll("text")
+            .attr("y", 0)
+            .attr("x", 9)
+            .attr("dy", ".35em")
+            .attr("transform", "rotate(55)")
+            .style("text-anchor", "start");
 
       // add the y Axis
       svg.append('g')
