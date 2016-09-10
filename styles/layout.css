@@ -36,3 +36,27 @@
   /*position: relative;*/
   display: none;
 }
+
+.svg-container{
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+.svg-content-responsive{
+  display: inline-block;
+  position: relative;
+  top: 10px;
+  left: 0;
+}
+
+.bar{
+  fill: #f3d83a
+}
+
+.axis text {
+  font: 50px;
+}
