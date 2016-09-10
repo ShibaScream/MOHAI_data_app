@@ -16,14 +16,21 @@
   // append the svg object to the body of the page
   // append a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
-  var svg = d3.select('#age_groups').append('svg')
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
-    .append('g')
-      .attr('transform',
-            'translate(' + margin.left + ',' + margin.top + ')');
+  var svg = d3.select('#age_groups')
+  .append('div')
+  .classed('svg-container', true)
+  .append('svg')
+  .attr('preserveAspectRatio', 'xMinYMin meet')
+  .attr('viewBox', '-40 20 900 450')
+  .classed('svg-content-responsive', true);
 
-  // get the data
+  //     .attr('width', width + margin.left + margin.right)
+  //     .attr('height', height + margin.top + margin.bottom)
+  //   .append('g')
+  //     .attr('transform',
+  //           'translate(' + margin.left + ',' + margin.top + ')');
+  //
+  // // get the data
   $.get('/ages', function(data) {
     // if (error) throw error;
 
