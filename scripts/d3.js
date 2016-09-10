@@ -18,12 +18,18 @@
     // append the svg object to the body of the page
     // append a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
-    var svg = d3.select(id).append('svg')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-      .append('g')
+    var svg = d3.select(id)
+        .classed('svg-container', true)
+        .append('svg')
+        .attr('preserveAspectRatio', 'xMinYMin meet')
+        .attr('viewBox', '-40 20 980 450')
+        .classed('svg-content-responsive', true)
+        // .attr('width', width + margin.left + margin.right)
+        // .attr('height', height + margin.top + margin.bottom)
+        .append('g')
         .attr('transform',
               'translate(' + margin.left + ',' + margin.top + ')');
+
 
       // format the data
       data.forEach(function(d) {
@@ -54,11 +60,14 @@
             .attr("x", 9)
             .attr("dy", ".35em")
             .attr("transform", "rotate(55)")
-            .style("text-anchor", "start");
+            .style("text-anchor", "start")
+            .style("fill", "white");
 
       // add the y Axis
       svg.append('g')
-          .call(d3.axisLeft(y));
+          .call(d3.axisLeft(y))
+          .selectAll("text")
+            .style("fill", "white");
   };
 
 
