@@ -91,10 +91,20 @@ ul {
   width: 100%;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: white;
   text-align: center;
   font-family: 'CooperHewitt';
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 700;
 }
 
 p{
