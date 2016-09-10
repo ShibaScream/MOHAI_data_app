@@ -1,14 +1,12 @@
 (function(module) {
-
   mapObj = {};
   // mapObj.geoCodeJSON = [];
   // mapObj.parsedLocation = [];
   mapObj.markers = [];
   mapObj.dbData = [];
-
+  mapObj.lastOpenInfoWindow;
 //** dont forget to delete
   // mapObj.dummyData = ['afghanistan', 'iraq', 'india'];
-
 // get visitor location data and query google api
   mapObj.googleReq = function(callback) {
     this.mapRender();
@@ -38,10 +36,7 @@
         **/
         if(location.lat && location.lng) {
           // console.log(geoData);
-          mapObj.addMarker({
-            lat: +location.lat,
-            lng: +location.lng
-          });
+          mapObj.addMarker(location, 'db');
         } else {
           // because Google gets mad: the i multiplies the delay by every iteration
           i += 1;
@@ -58,7 +53,7 @@
                     location.state = geoData.address_components[0].long_name;
                     location.country = geoData.address_components[1].long_name;
                   }
-                  mapObj.addMarker(geoData.geometry.location);
+                  mapObj.addMarker(location, 'google');
                   $.ajax({
                     type: 'PUT',
                     url: '/locationupdate',
@@ -79,37 +74,62 @@
       });
     });
   };
-
   //pull lat/lon from geocodeJSON and render map
   mapObj.mapRender = function() {
     mapObj.map;
     mapObj.geocoder;
-
     console.log('inside map render');
-
     mapObj.map = new
     google.maps.Map(document.getElementById('i_frame'), {
       scrollwheel: true,
       zoom: 2,
       center: {lat: 47.608013, lng: -122.335167}
     });
-
     mapObj.geocoder = new google.maps.Geocoder;
-
   };
-
-  mapObj.addMarker = function(location) {
+  mapObj.hideLastInfoWindow = function() {
+    if (mapObj.lastOpenInfoWindow) {
+      mapObj.lastOpenInfoWindow.close();
+      mapObj.lastOpenInfoWindow = null;
+    }
+  };
+  mapObj.addMarker = function(location, source) {
+    var position;
+    if (source === 'db') {
+      position = {
+        lat: +location.lat,
+        lng: +location.lng
+      };
+    } else if (source === 'google') {
+      position = geoData.geometry.location;
+    }
+    var infoContent = function() {
+      var result;
+      if (location.state) {
+        result = '<h3>State: ' + location.state + '</h3>';
+      } else {
+        result = '<h3>Country: ' + location.country + '</h3>';
+      };
+      result += '<h4>Number of Visitors: ' + location.count + '</h4>';
+      return result;
+    };
     var marker = new google.maps.Marker({
       // fix position
-      position: location,
+      position: position,
       map: mapObj.map,
       animation: google.maps.Animation.DROP,
       icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
     });
-
-    this.markers.push(marker);
-
+    marker.info = new google.maps.InfoWindow({
+      content: infoContent()
+    });
+    mapObj.map.panTo(position);
+    marker.addListener('click', function() {
+      mapObj.hideLastInfoWindow();
+      marker.info.open(mapObj.map, marker);
+      mapObj.lastOpenInfoWindow = marker.info;
+    });
+    mapObj.markers.push(marker);
   };
-
   module.mapObj = mapObj;
 })(window);
