@@ -18,6 +18,10 @@
   padding-top: 5%;
 }
 
+#visual_data {
+  /*display: block;*/
+}
+
 #visual_page {
   text-align: center;
   margin: 0 auto;
