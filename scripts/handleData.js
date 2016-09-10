@@ -14,16 +14,17 @@
     return -1;
   };
 
-  var propertyMatch = function(arr, property, obj) {
-
-  };
-
   dataHandler.init = function() {
     $.get('/data/all', function(data) {
       console.log('getting data');
       // console.log(data);
       dataHandler.all = data;
       dataHandler.populateQuestions(dataHandler.all);
+    }).then(function() {
+      $('#question_selection').on('change',function() {
+        $('#visual_data').empty();
+        visualization.verticalBarChart((dataHandler.filterData($(this).val())));
+      });
     });
   };
 
@@ -37,29 +38,21 @@
         return obj[property]
       });
 
-      uniquestions.forEach(function(ele) {
-        var optionTag = '<option value="' + ele + '">' + ele + '</option>';
-        $('#question_selection').append(optionTag);
-      });
-    };
+    uniquestions.forEach(function(ele) {
+      var optionTag = '<option value="' + ele + '">' + ele + '</option>';
+      $('#question_selection').append(optionTag);
+    });
+  };
 
+  dataHandler.filterData = function(option) {
+    var results = dataHandler.all.filter(function(obj){
+      return obj.questiontext === option;
+    })
 
-    dataHandler.populateGraphs = function(data) {
-      $('#question_selection').on('change', function(data) {
-       return $(this).value();
-      });
-      // var property = 'questiontext';
-      //
-      //   .filter(function(arr, property, obj) {
-      //     return propertyMatch(arr, property, obj);
-      //   }, [])
-      // });
-      // console.log($(this).val());
-    };
-
+    return results;
+  }
 
   dataHandler.init();
-  dataHandler.populateGraphs();
 
   module.dataHandler = dataHandler;
 })(window);

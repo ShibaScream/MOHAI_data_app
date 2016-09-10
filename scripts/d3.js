@@ -2,9 +2,9 @@
   visualization = {};
 
   visualization.verticalBarChart = function(data) {
-console.log('inside graph render');
+  console.log('inside graph render');
     // set the dimensions and margins of the graph
-    var margin = {top: 20, right: 50, bottom: 30, left: 50},
+    var margin = {top: 20, right: 50, bottom: 50, left: 50},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
@@ -57,7 +57,6 @@ console.log('inside graph render');
       // add the y Axis
       svg.append('g')
           .call(d3.axisLeft(y));
-    // });
   };
 
 
