@@ -4,6 +4,14 @@
 
   mainView.menuToggle = function(){
     $('#menuToggle').on('click', function(){
+      if ($('.menuSelect').css('display') === 'none') {
+        $('.menuSelect').slideDown('fast');
+      } else {
+        $('.menuSelect').slideUp('fast');
+      }
+    });
+
+    $('.menuSelect').on('click', function() {
       $('.menuSelect').toggle();
     });
   };
