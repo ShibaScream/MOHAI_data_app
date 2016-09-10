@@ -168,7 +168,7 @@ app.get('/data/*', function(req, res){
       	'FROM visitoranswer LEFT JOIN question ON visitoranswer.Questionid = question.QuestionID ' +
         'LEFT JOIN answer ON question.Questionid = answer.Questionid AND visitoranswer.Answerid = answer.Answerid ' +
         'INNER JOIN poll ON poll.Pollid = question.Pollid ' +
-        'WHERE poll.Pollid = 7 AND question.Questionid > 7005 ' +
+        'WHERE poll.Pollid = 7 AND question.Questionid > 7005 AND question.Questionid < 7011' +
         'GROUP BY poll.polltext, question.Questiontext, answer.Answertext',
         function(err, result) {
           if (err) throw err;
