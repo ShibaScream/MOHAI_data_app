@@ -22,8 +22,12 @@
       dataHandler.populateQuestions(dataHandler.all);
     }).then(function() {
       $('#question_selection').on('change',function() {
-        $('#visual_data').empty();
-        visualization.verticalBarChart((dataHandler.filterData($(this).val())), '#visual_data');
+        if ($(this).val() === '') {
+          $('#visual_data').hide();
+        } else {
+          $('#visual_data').empty().show();
+          visualization.verticalBarChart((dataHandler.filterData($(this).val())), '#visual_data');
+        }
       });
     });
   };
@@ -35,7 +39,7 @@
         return indexOfObject(arr, property, obj) === i;
       }, [])
       .map(function(obj){
-        return obj[property]
+        return obj[property];
       });
     uniquestions.forEach(function(ele) {
       var optionTag = '<option value="' + ele + '">' + ele + '</option>';
@@ -46,9 +50,9 @@
   dataHandler.filterData = function(option) {
     var results = dataHandler.all.filter(function(obj){
       return obj.questiontext === option;
-    })
+    });
     return results;
-  }
+  };
 
   dataHandler.init();
 
