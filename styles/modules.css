@@ -38,8 +38,8 @@
     max-width: 40%;
   }
 
-  .icon-menu{
-    visibility: hidden;
+  #menuToggle {
+    display: none;
   }
 
   .icon{

@@ -12,7 +12,9 @@
     });
 
     $('.menuSelect').on('click', function() {
-      $('.menuSelect').toggle();
+      if ($('#menuToggle').css('display') !== 'none') {
+        $('.menuSelect').toggle();
+      }
     });
   };
   mainView.menuToggle();
