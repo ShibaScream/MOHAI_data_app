@@ -10,8 +10,13 @@
 
 #separate {
   background-color: white;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#logo {
+  width: 50em;
+  margin: 0 auto;
 }
 
 #main p {
