@@ -23,7 +23,7 @@
     }).then(function() {
       $('#question_selection').on('change',function() {
         $('#visual_data').empty();
-        visualization.verticalBarChart((dataHandler.filterData($(this).val())));
+        visualization.verticalBarChart((dataHandler.filterData($(this).val())), '#visual_data');
       });
     });
   };
