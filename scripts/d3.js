@@ -1,7 +1,7 @@
 (function(module) {
   visualization = {};
 
-  visualization.verticalBarChart = function(data) {
+  visualization.verticalBarChart = function(data, id) {
   console.log('inside graph render');
     // set the dimensions and margins of the graph
     var margin = {top: 25, right: 50, bottom: 175, left: 50},
@@ -18,7 +18,7 @@
     // append the svg object to the body of the page
     // append a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
-    var svg = d3.select('#visual_data').append('svg')
+    var svg = d3.select(id).append('svg')
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
       .append('g')
