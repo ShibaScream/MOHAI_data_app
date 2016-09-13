@@ -1,0 +1,60 @@
+#i_frame {
+  height: 30em;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 600px){
+  /*=====larger screens =====*/
+  main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2% 5%;
+  }
+
+  nav {
+    /*background-color: #f3d83a;*/
+  }
+
+  nav li {
+    background-color: #f3d83a;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 150%;
+    padding: 0 20%;
+    color: black;
+  }
+
+  nav ul {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  img {
+    max-width: 40%;
+  }
+
+  #menuToggle {
+    display: none;
+  }
+
+  .icon{
+    font-size: 100%;
+  }
+
+  .menuSelect{
+    display: block;
+    border-radius: 10px;
+    padding: .5% 10%;
+    }
+
+  #i_frame {
+    height: 30em;
+    width: 90%;
+    margin: 0 auto;
+  }
+}

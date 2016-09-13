@@ -1,10 +1,12 @@
 {
   "name": "mohai_data_app",
   "version": "1.0.0",
-  "description": "",
+  "description": "This app preserves the voices, thoughts and ideas of MOHAI's visitors while simultaneously opening up that data to the community as a whole so it can be talked about and analyzed.",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.14.0"
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "pg": "6.1.0"
   },
   "devDependencies": {},
   "scripts": {

@@ -1,0 +1,66 @@
+.icon-menu{
+  float: right;
+  clear: both;
+  font-size: 2em;
+}
+
+.icon-menu .icon-home .icon-about{
+  color: black;
+}
+
+#separate {
+  background-color: white;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+#main p {
+  padding-top: 2%;
+}
+
+#visual_page {
+  text-align: center;
+  /*margin: 0 auto;*/
+}
+
+#visual_page p {
+  text-align: left;
+}
+
+#data h1 {
+  text-align: center;
+}
+
+.menuSelect{
+  background-color: #f3d83a;
+  /*position: relative;*/
+  display: none;
+}
+
+.svg-container{
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding: 5%
+  vertical-align: top;
+  overflow: hidden;
+}
+
+.svg-content-responsive{
+  display: inline-block;
+  position: relative;
+  top: 10px;
+  left: 0;
+}
+
+.bar{
+  fill: #f3d83a
+}
+
+.axis text {
+  font: 50px;
+}
+
+.infowindow {
+  color: black;
+}

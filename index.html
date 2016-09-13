@@ -1,16 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Hello World!</title>
-    <link href="style.css">
-    <link href="styles/normalize.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOHAI Data</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="styles/icon.css">
+    <link rel="stylesheet" href="styles/d3.css">
   </head>
-  <main>
-    <h1>HALLO WERLD</h1>
-  </main>
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.amd.min.js"></script>
-  <script src="app.js"></script>
-  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+  <body>
+    <div id="menuToggle" class="icon icon-menu"></div></br>
+    <nav class="icon nav_bar">
+        <ul id="menu">
+            <li class="menuSelect"><a href="/"><span class="icon-home"></span>Home</a></li>
+            <li class="menuSelect"><a href="/data"><span class="icon-table"></span>Data</a></li>
+            <li class="menuSelect"><a href="/about"><span class="icon-info"></span>About</a></li>
+        </ul>
+    </nav>
+    <main>
+      <div class="clear_fix">
+      </div>
+      <section class="tab-content" id="main">
+        <div id="separate">
+          <header id="logo">
+          <img alt="MOHAI Logo" src="styles/pictures/MOHAI_LOGO.png">
+          </header>
+        </div>
+        <h1>Welcome!</h1>
+          <p>
+            At the Bezos Center for Innovation, explore how innovation shaped our region and changed the world. Through interactive exhibits, community and educational programs, and first-person insights from leading innovators, discover Seattle's role as a nexus of big ideas and new directions - and ignite the innovator within! Generously supported by Jeff and MacKenzie Bezos, this is the place to discover the past and future of creativity and invention in our region.
+          </p>
+          <p>
+            What does innovation look like? Who innovates, where does it happen, and how do great ideas evolve? To find out more, tackle a challenge in the Idea Lab, discover a Seattle-made invention in the Patent Tree, and check out cutting-edge concepts in What's Next. Through lectures, special programs and changing displays, Seattle innovators will share their latest projects and invite you to take a look at the future as it unfolds.
+          </p>
+          <p>
+            Here in this app, you can explore some of the data from the exhibit! If you have visited the Bezos Center, you may have responded to questions throughout the exhibit. Now you can see what your friends and neighbors (near and far away!) have to say.
+          </p>
+      </section>
+      <section class="tab-content" id="about_visitors">
+        <h1>About our Visitors</h1>
+        <h3> MOHAI's visitors are from all over the world and of all different ages! Check out the data below!</h3>
+        <div id="i_frame">
+        </div>
+        <h3>Here's the ages of our visitors:</h3>
+        <div id="age_groups">
+        </div>
+        <!-- changed id -->
+      </section>
+      <section class="tab-content" id="visual_page">
+        <h1>Learn what MOHAI visitors have said!</h1>
+        <h3>Select a question below and learn what other MOHAI visitors have said! You can even filter the data to learn more. Cool!</h3>
+        <div id="questions">
+          <select id="question_selection">
+            <option value="">Select a question to see how others have responded!</option>
+          </select>
+        </div>
+        <section class="tab-content" id="filter_section">
+          <ul>
+            <li>
+              <select id="filter_li">
+                <option value="">Filter by Demographic</option>
+              </select>
+            </li>
+          </ul>
+        </section>
+        <div id="visual_data">
+        </div>
+      </section>
+    </main>
+    <footer>
+      &copy; CarRenDanJur 2016
+    </footer>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChDdnY2-5Nz0UnTJ1g0lmvMWrKHRn_36U" type="text/javascript"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.amd.min.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+    <script src="scripts/d3.js"></script>
+    <script src="scripts/aboutController.js"></script>
+    <script src="scripts/map.js"></script>
+    <!-- <script src="scripts/jrIndexMap.js"></script> -->
+    <script src="scripts/homeController.js"></script>
+    <script src="scripts/dataController.js"></script>
+    <script src="scripts/mainView.js"></script>
+    <script src="scripts/handleData.js"></script>
+    <script src="routes.js"></script>
+  </body>
 </html>
